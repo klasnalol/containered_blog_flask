@@ -1,0 +1,19 @@
+/* Upload page styling */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+form {
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+}
+#msg {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}

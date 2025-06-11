@@ -1,0 +1,21 @@
+/* Feed container overrides */
+#feed > div {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.commentForm {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.commentForm input {
+  flex: 1;
+}
+.deleteBtn {
+  background-color: #b00020;
+  margin-top: 0.5rem;
+}
