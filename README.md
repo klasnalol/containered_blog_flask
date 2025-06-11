@@ -18,7 +18,7 @@ Features
 Architecture
 
 The service layout is defined in docker-compose.yml:
-
+```
 version: "3.8"
 services:
   frontend:
@@ -49,9 +49,9 @@ services:
         condition: service_healthy
       posts_db:
         condition: service_healthy
-
+```
 Two PostgreSQL instances (db and posts_db) are provisioned with health checks and persistent volumes:
-
+```
   db:
     image: postgres:15-alpine
     environment:
@@ -83,11 +83,11 @@ Two PostgreSQL instances (db and posts_db) are provisioned with health checks an
       interval: 2s
       timeout: 2s
       retries: 15
-
+```
 Backend
 
 The backend Flask app initializes the databases and exposes REST endpoints. The initialization sets up user tables, post tables, and comment tables:
-
+```
 from flask import Flask, request, jsonify, session, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -154,14 +154,10 @@ Directory Structure
     docker-compose.yml – container orchestration
 
     README.md – project documentation
-
+```
 Environment Variables
 
 Environment variables for the backend database connections are already set in docker-compose.yml. They can be customized if you need different credentials or database names.
 Development Notes
 
 The backend uses Flask’s session support to track logged-in users, and CORS is enabled for the frontend to access the API. Uploaded files are saved under /app/uploads inside the backend container.
-
-This expanded README provides setup instructions, service explanations, and an overview of the code layout so new contributors can quickly understand and run the project.Simple Flask website running in Docker with separate frontend and backend
-containers. The frontend uses Flask with Jinja templates served behind Nginx
-for dynamic pages and includes a few animations for a nicer experience.
