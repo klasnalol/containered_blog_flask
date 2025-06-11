@@ -51,9 +51,11 @@ button, .btn {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
 }
 button:hover, .btn:hover {
   opacity: 0.9;
+  transform: scale(1.05);
 }
 
 input[type="text"],
@@ -86,4 +88,19 @@ img {
   border-radius: 50%;
   width: 2.5rem;
   height: 2.5rem;
+}
+
+header, footer {
+  background: var(--surface);
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+footer {
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+  margin-top: 2rem;
+}
+header h1 {
+  margin: 0;
 }

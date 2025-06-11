@@ -1,9 +1,9 @@
 /* Center the form */
-body {
+main {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 120px);
 }
 form {
   background: var(--surface);
