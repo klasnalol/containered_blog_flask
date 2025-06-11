@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Blog Feed{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/feed.css') }}">
+{% endblock %}
+{% block content %}
+  <h1>Blog Feed</h1>
+  <p>
+    <a href="{{ url_for('register') }}">Register</a> |
+    <a href="{{ url_for('login') }}">Login</a> |
+    <a href="{{ url_for('upload') }}">Create Post</a>
+  </p>
+  <div id="feed"></div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/feed.js') }}"></script>
+{% endblock %}
