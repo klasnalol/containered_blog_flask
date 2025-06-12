@@ -25,6 +25,7 @@ services:
     build: ./frontend
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - backend
 
@@ -139,7 +140,7 @@ Usage
 
     docker compose up --build
 
-    Open http://localhost to view the blog frontend.
+    Open https://localhost to view the blog frontend.
 
     Use the “Register” page to create a new account, then log in to post content. Admin accounts can delete posts. Uploaded images are stored in the uploads volume.
 
