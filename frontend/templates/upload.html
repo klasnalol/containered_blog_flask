@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+{% endblock %}
+{% block content %}
+<h1>Create a New Post</h1>
+<div id="msg" style="color:red;"></div>
+<form id="uploadForm">
+  <label>
+    Title:<br/>
+    <input type="text" name="title" required />
+  </label><br/>
+  <label>
+    Content:<br/>
+    <textarea name="content" rows="5" required></textarea>
+  </label><br/>
+  <label>
+    Image:<br/>
+    <input type="file" name="image" accept="image/*" />
+  </label><br/>
+  <button type="submit">Submit Post</button>
+</form>
+<p><a href="{{ url_for('index') }}">Back to Feed</a></p>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='upload.js') }}"></script>
+{% endblock %}
