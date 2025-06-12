@@ -1,10 +1,9 @@
 /* Upload page styling */
-main {
+body {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  min-height: calc(100vh - 120px);
 }
 form {
   background: var(--surface);

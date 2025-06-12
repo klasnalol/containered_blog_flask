@@ -1,8 +1,4 @@
 /* Feed container overrides */
-#feed {
-  max-width: 700px;
-  margin: 0 auto;
-}
 #feed > div {
   background-color: var(--surface);
   border: 1px solid var(--border);
@@ -22,11 +18,4 @@
 .deleteBtn {
   background-color: #b00020;
   margin-top: 0.5rem;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-#feed > div {
-  animation: fadeIn 0.5s ease-in;
 }
