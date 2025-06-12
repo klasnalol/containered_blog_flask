@@ -43,6 +43,7 @@
 </script>
 
   <script>
+    const API_BASE = `${location.protocol}//localhost:5000`;
     document.getElementById('uploadForm').addEventListener('submit', async e => {
       e.preventDefault();
       const msgEl = document.getElementById('msg');
@@ -51,7 +52,7 @@
 
       const form = document.getElementById('uploadForm');
       const fd = new FormData(form);
-      const res = await fetch('http://localhost:5000/posts', {
+      const res = await fetch(`${API_BASE}/posts`, {
         method: 'POST',
         credentials: 'include',
         body: fd
