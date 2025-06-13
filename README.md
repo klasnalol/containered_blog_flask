@@ -10,7 +10,8 @@ with **Docker Compose**.
 - Admin users can create and delete posts
 - Regular users can add comments and upload images
 - Theme toggle and animated transitions for a smoother UI
-- HTTPS support via included self‑signed certificates
+- HTTPS support (self-signed certificates are generated on startup)
+
 
 ## Quick Start
 
@@ -40,6 +41,6 @@ docker compose down
 - `docker-compose.yml` – service definitions
 - `README.md` – project documentation
 
-HTTPS certificates are located in `frontend/selfsigned.crt` and
-`frontend/selfsigned.key`. They are copied into the frontend image so the
-site can be accessed securely on port **443**.
+Self‑signed HTTPS certificates are generated automatically when the frontend
+container starts. The site is available on port **443** and any plain HTTP
+requests are redirected to HTTPS.
