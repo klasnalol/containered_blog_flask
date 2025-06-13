@@ -28,6 +28,8 @@ with **Docker Compose**.
 Use the **Register** page to create an account, log in, and start posting.
 Uploaded images are stored in the `uploads` volume.
 
+4. Too post you need to be with admin tag, add it manualy in mydb to any account you created.
+
 Stop everything with:
 
 ```bash
