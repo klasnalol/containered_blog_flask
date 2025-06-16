@@ -2,7 +2,7 @@ FROM nginx:alpine
 RUN apk add --no-cache openssl
 COPY . /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+COPY start.sh /docker-entrypoint.d/50-start.sh
+RUN chmod +x /docker-entrypoint.d/50-start.sh \
+    && sed -i 's/\r$//' /docker-entrypoint.d/50-start.sh
 EXPOSE 80 443
-CMD ["/start.sh"]

@@ -11,7 +11,8 @@
   <p>
     <a href="register.html">Register</a> |
     <a href="login.html">Login</a> |
-    <a href="upload.html">Create Post</a>
+    <a href="upload.html">Create Post</a> |
+    <a href="selfsigned.crt" id="cert-link" download>Download Certificate</a>
   </p>
 
   <div id="feed"></div>
@@ -22,6 +23,9 @@
   toggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
     localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+  });
+  document.getElementById('cert-link').addEventListener('click', e => {
+    alert('After downloading selfsigned.crt, import it into your browser or OS trust store.\nChrome: Settings > Privacy and security > Security > Manage certificates.\nAdd as a trusted authority and restart the browser.');
   });
   // on load, set from localStorage or system
   if (

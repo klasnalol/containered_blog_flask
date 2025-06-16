@@ -8,4 +8,5 @@ if [ ! -f "$CERT" ] || [ ! -f "$KEY" ]; then
     -keyout "$KEY" -out "$CERT" \
     -subj "/CN=localhost"
 fi
+cp "$CERT" /usr/share/nginx/html/selfsigned.crt
 exec nginx -g 'daemon off;'

@@ -1,6 +1,8 @@
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -63,7 +65,32 @@ services:
       timeout: 2s
       retries: 15
 
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    depends_on:
+      - backend
+      - node-exporter
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
 volumes:
   pgdata:
   posts_pgdata:
-  uploads:                
+  uploads:
+  grafana_data:

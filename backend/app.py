@@ -1,7 +1,9 @@
-from flask import Flask, request, jsonify, session, send_from_directory
+from flask import Flask, request, jsonify, session, send_from_directory, Response
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import os, time, psycopg2
+import psutil
+from prometheus_client import Gauge, generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST
 
 from db import get_user_db_conn
 from posts_db import get_posts_db_conn
@@ -11,6 +13,11 @@ from models import Post, Comment
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret")
+
+# ─── Prometheus Metrics Setup ────────────────────────────────────────────────
+registry = CollectorRegistry()
+CPU_GAUGE = Gauge('app_cpu_percent', 'Process CPU utilization', registry=registry)
+MEM_GAUGE = Gauge('app_memory_mb', 'Process memory usage in MB', registry=registry)
 
 # ─── Uploads Setup ───────────────────────────────────────────────────────────
 UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER", "uploads")
@@ -195,6 +202,14 @@ def add_comment(post_id):
 @app.route("/uploads/<filename>")
 def uploaded(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
+
+# ─── Metrics Endpoint ───────────────────────────────────────────────────────
+@app.route("/metrics")
+def metrics():
+    CPU_GAUGE.set(psutil.cpu_percent())
+    MEM_GAUGE.set(psutil.Process().memory_info().rss / 1024 / 1024)
+    data = generate_latest(registry)
+    return Response(data, mimetype=CONTENT_TYPE_LATEST)
 
 # ─── Main ───────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
