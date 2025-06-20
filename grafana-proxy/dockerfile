@@ -1,0 +1,7 @@
+FROM nginx:alpine
+RUN apk add --no-cache openssl
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY start.sh /docker-entrypoint.d/50-start.sh
+RUN chmod +x /docker-entrypoint.d/50-start.sh \
+    && sed -i 's/\r$//' /docker-entrypoint.d/50-start.sh
+EXPOSE 443

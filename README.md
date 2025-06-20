@@ -46,6 +46,8 @@ docker compose down
 Self‑signed HTTPS certificates are generated automatically when the frontend
 container starts. The site is available on port **443** and any plain HTTP
 requests are redirected to HTTPS.
+Prometheus and Grafana are also served over HTTPS using separate Nginx proxies
+that generate their own self‑signed certificates on startup.
 
 ## Downloading the Certificate
 
@@ -64,8 +66,8 @@ included in the Compose stack so they start automatically when you run
 Prometheus loads `prometheus.yml` which already scrapes the backend and the
 included Node Exporter container. Once everything is running:
 
-1. Visit `http://localhost:9090` to view Prometheus targets and query metrics.
-2. Visit `http://localhost:3000` to access Grafana (default credentials:
+1. Visit `https://localhost:9090` to view Prometheus targets and query metrics.
+2. Visit `https://localhost:3000` to access Grafana (default credentials:
    `admin`/`admin`). Add Prometheus (available at `http://prometheus:9090`) as a
    data source and create a dashboard showing the `app_cpu_percent` and
    `app_memory_mb` metrics.

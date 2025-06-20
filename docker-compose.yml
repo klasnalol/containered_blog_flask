@@ -74,21 +74,30 @@ services:
     image: prom/prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    ports:
-      - "9090:9090"
     depends_on:
       - backend
       - node-exporter
 
+  prometheus-proxy:
+    build: ./prometheus-proxy
+    ports:
+      - "9090:443"
+    depends_on:
+      - prometheus
+
   grafana:
     image: grafana/grafana
-    ports:
-      - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
     depends_on:
       - prometheus
 
+  grafana-proxy:
+    build: ./grafana-proxy
+    ports:
+      - "3000:443"
+    depends_on:
+      - grafana
 volumes:
   pgdata:
   posts_pgdata:
